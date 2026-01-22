@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amany Badr - Frontend Developer Portfolio</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <!-- Devicon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#030c12',
+                        'deep-teal': '#1D546D',
+                        'muted-sage': '#00E5E5',
+                        'light-gray': '#F3F4F4',
+                        'cyan-light': '#D1E8EB',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(0, 229, 229, 0.5), 0 0 20px rgba(0, 229, 229, 0.3)',
+                        'neon-strong': '0 0 15px rgba(0, 229, 229, 0.8), 0 0 30px rgba(29, 84, 109, 0.5)',
+                    },
+                    animation: {
+                        'typewriter': 'typewriter 4s steps(40) infinite',
+                        'scroll': 'scroll 40s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-neon': 'pulseNeon 2s infinite',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        typewriter: {
+                            '0%': { width: '0%' },
+                            '40%': { width: '100%' },
+                            '60%': { width: '100%' },
+                            '100%': { width: '0%' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseNeon: {
+                            '0%, 100%': { boxShadow: '0 0 10px rgba(0, 229, 229, 0.5)' },
+                            '50%': { boxShadow: '0 0 20px rgba(0, 229, 229, 0.9)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        @layer utilities {
+          .glass {
+            @apply bg-primary-dark/60 backdrop-blur-xl border border-muted-sage/50 shadow-neon;
+          }
+          .glass-card {
+             @apply bg-primary-dark/40 backdrop-blur-md border border-muted-sage/30 hover:border-muted-sage hover:shadow-neon transition-all duration-300;
+          }
+          .text-glow {
+            text-shadow: 0 0 10px rgba(0, 229, 229, 0.3);
+          }
+        }
+
+        body {
+            @apply font-sans text-cyan-light bg-primary-dark transition-colors duration-300;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+          @apply bg-primary-dark;
+        }
+        ::-webkit-scrollbar-thumb {
+          @apply bg-deep-teal rounded-full hover:bg-muted-sage shadow-neon;
+        }
+
+        .stagger-1 { animation-delay: 100ms; }
+        .stagger-2 { animation-delay: 200ms; }
+        .stagger-3 { animation-delay: 300ms; }
+        .stagger-4 { animation-delay: 400ms; }
+        .stagger-5 { animation-delay: 500ms; }
+
+        .typewriter-cursor::after {
+          content: '|';
+          @apply text-muted-sage;
+          animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+
+        .logo {
+            font-size: 27px; /* Final subtle boost */
+            font-weight: bold;
+            font-family: monospace; /* Ensure code-look */
+            background: linear-gradient(to right, #ffffff, #00eeee); /* White to Neon Cyan */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-primary-dark text-cyan-light transition-colors duration-300 selection:bg-muted-sage selection:text-primary-dark">
+
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 z-50 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo (Far Left) -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="logo">
+                        &lt;AB /&gt;
+                    </a>
+                </div>
+
+                <!-- Navigation Links (Far Right) -->
+                <div class="hidden md:flex items-center space-x-6 ml-auto">
+                    <a href="#"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        Home
+                    </a>
+                    <a href="#about"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        About
+                    </a>
+                    <a href="#education"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        Education
+                    </a>
+                    <a href="#skills"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        Skills
+                    </a>
+                    <a href="#experience"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        Experience
+                    </a>
+                    <a href="#services"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        Services
+                    </a>
+                    <a href="#projects"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        Projects
+                    </a>
+                    <a href="#contact"
+                        class="text-[13px] font-semibold text-[#00eeee] hover:text-white transition-colors duration-300 ease-in-out tracking-[1px]">
+                        Contact
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="p-2 rounded-md hover:bg-deep-teal/20 text-[#00eeee] transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-20 left-0 w-full bg-primary-dark/95 backdrop-blur-xl border-b border-muted-sage/30 flex flex-col py-4 px-4 shadow-neon space-y-4">
+            <a href="#" class="block text-lg font-bold text-[#00eeee] hover:text-white">Home</a>
+            <a href="#about" class="block text-lg font-bold text-[#00eeee] hover:text-white">About</a>
+            <a href="#education" class="block text-lg font-bold text-[#00eeee] hover:text-white">Education</a>
+            <a href="#skills" class="block text-lg font-bold text-[#00eeee] hover:text-white">Skills</a>
+            <a href="#experience" class="block text-lg font-bold text-[#00eeee] hover:text-white">Experience</a>
+            <a href="#services" class="block text-lg font-bold text-[#00eeee] hover:text-white">Services</a>
+            <a href="#projects" class="block text-lg font-bold text-[#00eeee] hover:text-white">Projects</a>
+            <a href="#contact" class="block text-lg font-bold text-[#00eeee] hover:text-white">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden mt-[3px]">
+        <div class="absolute top-20 right-0 w-80 h-80 bg-[#00E5E5]/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute bottom-20 left-0 w-80 h-80 bg-[#00E5E5]/10 rounded-full blur-3xl -z-10 animate-pulse"
+            style="animation-delay: 1s;"></div>
+
+        <!-- Icons moved inside the container below -->
+
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col lg:flex-row items-center justify-between w-full mt-12">
+
+            <!-- Text Section (Name, Title, Desc, Button) -->
+            <!-- Layout: Centered on sm/md, Left on lg -->
+            <div class="w-full lg:w-1/2 text-center lg:text-left space-y-6 reveal-on-scroll"
+                style="transform: translateY(-10px) !important;">
+                <h1 class="text-5xl md:text-7xl font-semibold text-white tracking-tight drop-shadow-lg">
+                    Amany Badr
+                </h1>
+                <h2 class="text-2xl md:text-3xl text-muted-sage font-mono font-semibold leading-[1.1] pb-0">
+                    <span id="typewriter-text" class="typewriter-cursor"></span>
+                </h2>
+                <div class="max-w-full lg:max-w-[600px] -mt-[12px] pt-0 mx-auto lg:mx-0">
+                    <p class="text-lg text-white/70 leading-[1.6] p-0">
+                        Designing and engineering modern, responsive, and scalable web interfaces by transforming
+                        complex logic into seamless, pixel-perfect user experiences.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                    <a href="#"
+                        class="px-8 py-3 bg-deep-teal/20 text-white hover:bg-deep-teal/40 border border-muted-sage rounded-full font-medium transition-all shadow-neon hover:shadow-neon-strong hover:translate-y-1">
+                        Download CV <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Social Icons Section -->
+            <!-- Layout: Flex col & Centered below text on sm/md. Absolute Right on lg. -->
+            <div
+                class="w-full lg:w-auto relative lg:absolute lg:right-4 lg:sm:right-6 lg:right-8 lg:top-1/2 lg:transform lg:translate-x-1/2 lg:-translate-y-[calc(50%+27px)] z-20 flex flex-col items-center mt-12 lg:mt-0">
+                <!-- Vertical Connector Line (Hidden on mobile/tablet) -->
+                <div
+                    class="hidden lg:block absolute top-[-20%] bottom-[-20%] w-[0.5px] bg-[#00E5E5]/30 shadow-[0_0_15px_#00E5E5] z-0">
+                </div>
+
+                <!-- Icon List (Horizontal on mobile/tablet, Vertical on Desktop) -->
+                <div
+                    class="relative z-10 flex flex-row lg:flex-col justify-center lg:justify-between items-center w-full lg:w-auto h-auto lg:h-[300px] gap-6 lg:gap-0">
+                    <!-- LinkedIn -->
+                    <a href="#" target="_blank"
+                        class="w-12 h-12 rounded-full bg-[#030c12] border border-[#00E5E5]/50 shadow-[0_0_10px_rgba(0,229,229,0.3)] flex items-center justify-center text-[#00E5E5] hover:bg-[#00E5E5] hover:text-[#030c12] hover:shadow-[0_0_20px_#00E5E5] hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com/amanybadr" target="_blank"
+                        class="w-12 h-12 rounded-full bg-[#030c12] border border-[#00E5E5]/50 shadow-[0_0_10px_rgba(0,229,229,0.3)] flex items-center justify-center text-[#00E5E5] hover:bg-[#00E5E5] hover:text-[#030c12] hover:shadow-[0_0_20px_#00E5E5] hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <!-- Behance -->
+                    <a href="#" target="_blank"
+                        class="w-12 h-12 rounded-full bg-[#030c12] border border-[#00E5E5]/50 shadow-[0_0_10px_rgba(0,229,229,0.3)] flex items-center justify-center text-[#00E5E5] hover:bg-[#00E5E5] hover:text-[#030c12] hover:shadow-[0_0_20px_#00E5E5] hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-behance text-xl"></i>
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:amanybadr19930@gmail.com"
+                        class="w-12 h-12 rounded-full bg-[#030c12] border border-[#00E5E5]/50 shadow-[0_0_10px_rgba(0,229,229,0.3)] flex items-center justify-center text-[#00E5E5] hover:bg-[#00E5E5] hover:text-[#030c12] hover:shadow-[0_0_20px_#00E5E5] hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Empty Spacer (Only relevant on lg to maintain flex spacing if needed, though icons are absolute) -->
+            <div
+                class="hidden lg:flex w-full md:w-1/2 justify-center md:justify-end mb-10 md:mb-0 reveal-on-scroll stagger-2">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <!-- About Section -->
+    <section id="about" class="py-32 bg-primary-dark relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal-on-scroll">
+
+            <!-- Elegant Tag (Who Am I?) -->
+            <!-- Elegant Tag (Who Am I?) -->
+            <span
+                class="inline-block px-4 py-1 border border-muted-sage rounded-full text-xs font-semibold font-mono text-muted-sage mb-8 tracking-[0.2em] shadow-neon hover:shadow-neon-strong transition-all cursor-default">
+                WHO AM I?
+            </span>
+
+            <!-- Large Heading with Soft Glow -->
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-white"
+                style="text-shadow: 0 0 15px rgba(6, 182, 212, 0.4);">
+                About Me
+            </h2>
+
+            <!-- Elegant Vertical Line -->
+            <div class="w-px h-24 bg-gradient-to-b from-muted-sage/0 via-muted-sage/50 to-muted-sage/0 mx-auto mb-10">
+            </div>
+
+            <!-- Main Description (Split paragraphs) -->
+            <!-- Main Description (Updated & Centered) -->
+            <!-- Main Description (Refined Layout) -->
+            <!-- Main Description (Refined Layout & Color) -->
+            <div
+                class="max-w-4xl mx-auto mb-20 text-lg md:text-xl text-white/70 leading-relaxed font-light text-center">
+                <p>
+                    I am a Frontend Developer who bridges the gap between complex user psychology and high-performance
+                    code. My approach is rooted in precision, ensuring every pixel serves a purpose. With a professional
+                    background in Graphic Design, I deliver scalable interfaces that are not just functional, but
+                    visually compelling and tailored exactly to your vision.
+                </p>
+            </div>
+
+            <!-- Premium Icon Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Design -->
+                <div
+                    class="group p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-muted-sage/50 hover:bg-white/[0.05] transition-all duration-300 hover:-translate-y-1">
+                    <div
+                        class="w-14 h-14 mx-auto rounded-full bg-deep-teal/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/5 group-hover:border-muted-sage/30">
+                        <i class="fas fa-pencil-ruler text-xl text-muted-sage transition-colors"></i>
+                    </div>
+                    <h3 class="text-white font-medium tracking-wide group-hover:text-muted-sage transition-colors">
+                        Design</h3>
+                </div>
+
+                <!-- Engineering -->
+                <div
+                    class="group p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-deep-teal/50 hover:bg-white/[0.05] transition-all duration-300 hover:-translate-y-1">
+                    <div
+                        class="w-14 h-14 mx-auto rounded-full bg-deep-teal/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/5 group-hover:border-deep-teal/30">
+                        <i class="fas fa-code text-xl text-deep-teal transition-colors"></i>
+                    </div>
+                    <h3 class="text-white font-medium tracking-wide group-hover:text-deep-teal transition-colors">
+                        Code</h3>
+                </div>
+
+                <!-- Performance -->
+                <div
+                    class="group p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-muted-sage/50 hover:bg-white/[0.05] transition-all duration-300 hover:-translate-y-1">
+                    <div
+                        class="w-14 h-14 mx-auto rounded-full bg-deep-teal/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/5 group-hover:border-muted-sage/30">
+                        <i class="fas fa-rocket text-xl text-muted-sage transition-colors"></i>
+                    </div>
+                    <h3 class="text-white font-medium tracking-wide group-hover:text-muted-sage transition-colors">
+                        Performance</h3>
+                </div>
+
+                <!-- Responsive -->
+                <div
+                    class="group p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-deep-teal/50 hover:bg-white/[0.05] transition-all duration-300 hover:-translate-y-1">
+                    <div
+                        class="w-14 h-14 mx-auto rounded-full bg-deep-teal/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/5 group-hover:border-deep-teal/30">
+                        <i class="fas fa-mobile-alt text-xl text-deep-teal transition-colors"></i>
+                    </div>
+                    <h3 class="text-white font-medium tracking-wide group-hover:text-deep-teal transition-colors">
+                        Responsive</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <!-- Education Section -->
+    <section id="education" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white reveal-on-scroll text-glow"
+                style="margin-bottom: 105px !important;">
+                Education Journey</h2>
+
+            <div class="relative">
+                <div
+                    class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-muted-sage/20 transform -translate-x-1/2">
+                    <div
+                        class="absolute top-0 left-0 w-full bg-deep-teal h-0 transition-all duration-1000 draw-line shadow-neon">
+                    </div>
+                </div>
+
+                <div
+                    class="relative z-10 mb-12 flex flex-col md:flex-row items-start md:items-center w-full reveal-on-scroll">
+                    <div
+                        class="order-1 md:order-2 absolute left-8 md:left-1/2 transform -translate-x-1/2 -top-1 md:top-auto w-12 h-12 rounded-full bg-primary-dark border-4 border-deep-teal flex items-center justify-center shadow-neon">
+                        <i class="fas fa-graduation-cap text-deep-teal"></i>
+                    </div>
+                    <div class="order-2 md:order-1 md:w-1/2 md:pr-16 pl-20 md:pl-0 w-full">
+                        <div class="p-6 md:p-8 glass-card rounded-xl shadow-neon border border-muted-sage/20 hover:shadow-neon-strong hover:-translate-y-2 transition-all duration-500 w-full max-w-[500px] md:max-w-none mx-auto md:mx-0"
+                            style="overflow-wrap: break-word; word-break: break-word;">
+                            <h3 class="font-bold text-lg text-white leading-relaxed" style="overflow-wrap: break-word;">
+                                Bachelor in Computer Science
+                            </h3>
+                            <p class="text-sm text-muted-sage font-medium mt-2 leading-relaxed">Benha University</p>
+                            <span
+                                class="inline-block mt-5 px-3 py-1 bg-white/10 text-cyan-light text-xs rounded-full border border-muted-sage/30">Good</span>
+                        </div>
+                    </div>
+                    <div class="order-3 md:w-1/2"></div>
+                </div>
+
+                <div
+                    class="relative z-10 mb-12 flex flex-col md:flex-row items-start md:items-center w-full reveal-on-scroll stagger-1">
+                    <div
+                        class="order-1 md:order-2 absolute left-8 md:left-1/2 transform -translate-x-1/2 -top-1 md:top-auto w-12 h-12 rounded-full bg-primary-dark border-4 border-muted-sage flex items-center justify-center shadow-neon">
+                        <i class="fas fa-laptop-code text-muted-sage"></i>
+                    </div>
+                    <div class="order-3 md:order-3 md:w-1/2 md:pl-16 pl-20 md:pl-0 w-full">
+                        <div class="p-6 md:p-8 glass-card rounded-xl shadow-neon border border-muted-sage/20 hover:shadow-neon-strong hover:-translate-y-2 transition-all duration-500 border-l-4 border-l-deep-teal w-full max-w-[500px] md:max-w-none mx-auto md:mx-0"
+                            style="overflow-wrap: break-word; word-break: break-word;">
+                            <h3 class="font-bold text-lg text-white leading-relaxed" style="overflow-wrap: break-word;">
+                                Web Development Professional Diploma</h3>
+                            <p class="text-sm text-muted-sage font-medium mt-2 leading-relaxed">National
+                                Telecommunication Institute (NTI)</p>
+                            <span
+                                class="inline-block mt-5 px-3 py-1 bg-deep-teal/20 border border-deep-teal text-white text-xs rounded-full shadow-neon">Excellent
+                                (95%)</span>
+                        </div>
+                    </div>
+                    <div class="order-2 md:w-1/2"></div>
+                </div>
+
+                <div
+                    class="relative z-10 flex flex-col md:flex-row items-start md:items-center w-full reveal-on-scroll stagger-2">
+                    <div
+                        class="order-1 md:order-2 absolute left-8 md:left-1/2 transform -translate-x-1/2 -top-1 md:top-auto w-12 h-12 rounded-full bg-primary-dark border-4 border-deep-teal flex items-center justify-center shadow-neon">
+                        <i class="fas fa-palette text-deep-teal"></i>
+                    </div>
+                    <div class="order-2 md:order-1 md:w-1/2 md:pr-16 pl-20 md:pl-0 w-full">
+                        <div class="p-6 md:p-8 glass-card rounded-xl shadow-neon border border-muted-sage/20 hover:shadow-neon-strong hover:-translate-y-2 transition-all duration-500 border-l-4 border-l-muted-sage w-full max-w-[500px] md:max-w-none mx-auto md:mx-0"
+                            style="overflow-wrap: break-word; word-break: break-word;">
+                            <h3 class="font-bold text-lg text-white leading-relaxed" style="overflow-wrap: break-word;">
+                                Graphic Design Professional Diploma</h3>
+                            <p class="text-sm text-muted-sage font-medium mt-2 leading-relaxed">Information
+                                Technology Institute (ITI)</p>
+                            <span
+                                class="inline-block mt-5 px-3 py-1 bg-muted-sage/20 border border-muted-sage text-white text-xs rounded-full shadow-neon">Very
+                                Good</span>
+                        </div>
+                    </div>
+                    <div class="order-3 md:w-1/2"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Slider -->
+    <section id="skills" class="py-16 bg-primary-dark overflow-hidden relative" style="margin-top: 20px;">
+        <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5 pointer-events-none"></div>
+        <h2 class="text-4xl md:text-5xl font-bold text-center text-white reveal-on-scroll text-glow"
+            style="margin-bottom: 68px;">
+            Skills & Tools</h2>
+
+        <div class="relative max-w-7xl mx-auto px-4 group">
+            <div class="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-primary-dark to-transparent">
+            </div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-primary-dark to-transparent">
+            </div>
+
+            <div class="flex items-center space-x-16 animate-scroll hover:[animation-play-state:paused] w-max py-8">
+                <!-- Set 1 -->
+                <div class="flex space-x-16">
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-react-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">React</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <svg class="w-16 h-16 text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"
+                            viewBox="0 0 128 128" fill="currentColor">
+                            <path
+                                d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 75.8C116.4 106.2 128 86.5 128 64c0-35.3-28.7-64-64-64zm22.1 84.6l-7.5-11.3V41.8h7.5v42.8z">
+                            </path>
+                        </svg>
+                        <span class="mt-3 text-sm font-medium text-white">Next.js</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-typescript-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">TypeScript</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-javascript-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">JavaScript</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-redux-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Redux</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-tailwindcss-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Tailwind</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-sass-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Sass</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-figma-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Figma</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-photoshop-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Photoshop</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-html5-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">HTML</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-html5-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">HTML5</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-css3-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">CSS</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-css3-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">CSS3</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-xd-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Adobe XD</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-illustrator-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Illustrator</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-nodejs-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Node.js</span>
+                    </div>
+                </div>
+                <!-- Set 2 (Duplicate for seamless loop) -->
+                <div class="flex space-x-16">
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-react-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">React</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <svg class="w-16 h-16 text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"
+                            viewBox="0 0 128 128" fill="currentColor">
+                            <path
+                                d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 75.8C116.4 106.2 128 86.5 128 64c0-35.3-28.7-64-64-64zm22.1 84.6l-7.5-11.3V41.8h7.5v42.8z">
+                            </path>
+                        </svg>
+                        <span class="mt-3 text-sm font-medium text-white">Next.js</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-typescript-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">TypeScript</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-javascript-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">JavaScript</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-redux-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Redux</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-tailwindcss-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Tailwind</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-sass-original text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Sass</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-figma-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Figma</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-photoshop-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Photoshop</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-html5-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">HTML</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-html5-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">HTML5</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-css3-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">CSS</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-css3-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">CSS3</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-xd-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Adobe XD</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-illustrator-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Illustrator</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center group/icon transition-transform hover:scale-110 duration-300">
+                        <i
+                            class="devicon-nodejs-plain text-6xl text-muted-sage group-hover/icon:text-deep-teal transition-colors drop-shadow-lg"></i>
+                        <span class="mt-3 text-sm font-medium text-white">Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 relative" style="margin-top: 35px;">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white reveal-on-scroll text-glow"
+                style="margin-bottom: 120px !important;">
+                Professional Experience</h2>
+
+            <div class="relative">
+                <div
+                    class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-muted-sage/20 transform -translate-x-1/2">
+                    <div
+                        class="absolute top-0 left-0 w-full bg-deep-teal h-0 transition-all duration-1000 draw-line shadow-neon">
+                    </div>
+                </div>
+
+                <!-- Experience 1 -->
+                <div
+                    class="relative z-10 mb-12 flex flex-col md:flex-row items-start md:items-center w-full reveal-on-scroll">
+                    <div
+                        class="order-1 md:order-2 absolute left-8 md:left-1/2 transform -translate-x-1/2 -top-1 md:top-auto w-12 h-12 rounded-full bg-primary-dark border-4 border-deep-teal flex items-center justify-center shadow-neon">
+                        <i class="fas fa-palette text-deep-teal"></i>
+                    </div>
+                    <div class="order-2 md:order-1 md:w-1/2 md:pr-16 pl-20 md:pl-0 w-full">
+                        <div class="p-6 md:p-8 glass-card rounded-xl shadow-neon border border-muted-sage/20 hover:shadow-neon-strong hover:-translate-y-2 transition-all duration-500 w-full max-w-[500px] md:max-w-none mx-auto md:mx-0"
+                            style="overflow-wrap: break-word; word-break: break-word;">
+                            <h3 class="font-bold text-[20px] text-white leading-relaxed"
+                                style="overflow-wrap: break-word;">
+                                Graphic Designer
+                            </h3>
+                            <p class="text-sm text-muted-sage font-medium mt-2 leading-relaxed">Smart Art</p>
+                            <span
+                                class="inline-block mt-5 px-4 py-1.5 bg-deep-teal/20 border border-deep-teal text-white text-xs rounded-full shadow-neon font-mono">2019
+                                - 2021</span>
+                            <ul class="mt-6 space-y-3 text-sm text-gray-400 font-medium leading-relaxed list-none">
+                                <li>Created high-quality visual designs and branding materials for various clients.</li>
+                                <li>Developed creative concepts for digital and print media projects.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="order-3 md:w-1/2"></div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div
+                    class="relative z-10 flex flex-col md:flex-row items-start md:items-center w-full reveal-on-scroll stagger-1">
+                    <div
+                        class="order-1 md:order-2 absolute left-8 md:left-1/2 transform -translate-x-1/2 -top-1 md:top-auto w-12 h-12 rounded-full bg-primary-dark border-4 border-muted-sage flex items-center justify-center shadow-neon">
+                        <i class="fas fa-brush text-muted-sage"></i>
+                    </div>
+                    <div class="order-3 md:order-3 md:w-1/2 md:pl-16 pl-20 md:pl-0 w-full">
+                        <div class="p-6 md:p-8 glass-card rounded-xl shadow-neon border border-muted-sage/20 hover:shadow-neon-strong hover:-translate-y-2 transition-all duration-500 border-l-4 border-l-deep-teal w-full max-w-[500px] md:max-w-none mx-auto md:mx-0"
+                            style="overflow-wrap: break-word; word-break: break-word;">
+                            <h3 class="font-bold text-[20px] text-white leading-relaxed"
+                                style="overflow-wrap: break-word;">
+                                Graphic Designer</h3>
+                            <p class="text-sm text-muted-sage font-medium mt-2 leading-relaxed">Al-Noor Printing House
+                            </p>
+                            <span
+                                class="inline-block mt-5 px-4 py-1.5 bg-muted-sage/20 border border-muted-sage text-white text-xs rounded-full shadow-neon font-mono">2018
+                                - 2019</span>
+                            <ul class="mt-6 space-y-3 text-sm text-gray-400 font-medium leading-relaxed list-none">
+                                <li>Designed various print materials including brochures, business cards, and banners.
+                                </li>
+                                <li>Prepared and optimized design files for high-quality printing production.</li>
+                                <li>Ensured color accuracy and layout precision for all client projects.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="order-2 md:w-1/2"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-primary-dark relative">
+        <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-5xl md:text-6xl font-bold text-center text-white reveal-on-scroll text-glow"
+                style="margin-top: 20px; margin-bottom: 100px !important;">
+                Services</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="p-8 rounded-2xl glass-card shadow-neon transition-all duration-300 group hover:-translate-y-[25px] reveal-on-scroll border border-muted-sage/20">
+                    <div
+                        class="w-14 h-14 rounded-lg bg-deep-teal/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                        <i class="fas fa-layer-group text-2xl text-muted-sage"></i>
+                    </div>
+                    <h3 class="text-[23px] font-semibold mb-3 text-white">UI/UX Design</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Crafting intuitive,
+                        user-centric, and visually stunning digital experiences using Figma and Adobe XD.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="p-8 rounded-2xl glass-card shadow-neon transition-all duration-300 group hover:-translate-y-[25px] reveal-on-scroll stagger-1 border border-muted-sage/20">
+                    <div
+                        class="w-14 h-14 rounded-lg bg-deep-teal/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                        <i class="fas fa-code text-2xl text-deep-teal"></i>
+                    </div>
+                    <h3 class="text-[23px] font-semibold mb-3 text-white">Web Development</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Building responsive,
+                        high-performance, and scalable web applications using React, Next.js, and modern CSS.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="p-8 rounded-2xl glass-card shadow-neon transition-all duration-300 group hover:-translate-y-[25px] reveal-on-scroll stagger-2 border border-muted-sage/20">
+                    <div
+                        class="w-14 h-14 rounded-lg bg-deep-teal/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                        <i class="fas fa-pen-nib text-2xl text-muted-sage"></i>
+                    </div>
+                    <h3 class="text-[23px] font-semibold mb-3 text-white">Graphic Design</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Developing unique visual
+                        identities, print materials, and creative concepts that make brands stand out.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div
+                    class="p-8 rounded-2xl glass-card shadow-neon transition-all duration-300 group hover:-translate-y-[25px] reveal-on-scroll stagger-3 border border-muted-sage/20">
+                    <div
+                        class="w-14 h-14 rounded-lg bg-deep-teal/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                        <i class="fas fa-desktop text-2xl text-deep-teal"></i>
+                    </div>
+                    <h3 class="text-[21px] font-semibold mb-3 text-white">Responsive Designs</h3>
+                    <p class="text-sm text-white/60 font-medium leading-relaxed">Ensuring your website looks and
+                        works perfectly on all devices, from mobile phones to large desktop screens.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative overflow-hidden bg-primary-dark">
+        <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white reveal-on-scroll text-glow"
+                style="margin-top: 20px; margin-bottom: 104px !important;">
+                Featured Projects</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Project 1 -->
+                <div
+                    class="group relative flex flex-col h-full rounded-2xl overflow-hidden shadow-neon hover:shadow-neon-strong transition-all duration-500 reveal-on-scroll glass-card border border-muted-sage/20">
+                    <div class="h-52 relative overflow-hidden border-b border-muted-sage/10 bg-primary-dark">
+                        <img src="assets/projects/one-tech.png" alt="One Tech"
+                            class="w-full h-full object-cover animate-fade-in transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-primary-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                            <a href="#"
+                                class="px-6 py-2 bg-muted-sage/20 border border-muted-sage text-white rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-muted-sage/40">View
+                                Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-muted-sage transition-colors">One
+                            Tech</h3>
+                        <p class="text-sm text-cyan-light mb-4">E-commerce platform for high-end electronics.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">HTML</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">CSS</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">JavaScript</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">Bootstrap</span>
+                        </div>
+                        <div class="mt-auto">
+                            <a href="#"
+                                class="w-full flex items-center justify-center gap-2 px-8 py-3 bg-deep-teal/20 text-white hover:bg-deep-teal/40 border border-muted-sage rounded-none font-medium transition-all shadow-neon hover:shadow-neon-strong hover:translate-y-1">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div
+                    class="group relative flex flex-col h-full rounded-2xl overflow-hidden shadow-neon hover:shadow-neon-strong transition-all duration-500 reveal-on-scroll stagger-1 glass-card border border-muted-sage/20">
+                    <div class="h-52 relative overflow-hidden border-b border-muted-sage/10 bg-primary-dark">
+                        <img src="assets/projects/future.png" alt="Future Processing"
+                            class="w-full h-full object-cover animate-fade-in transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-primary-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                            <a href="#"
+                                class="px-6 py-2 bg-muted-sage/20 border border-muted-sage text-white rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-neon hover:bg-muted-sage/40">View
+                                Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-muted-sage transition-colors">
+                            Future Processing</h3>
+                        <p class="text-sm text-cyan-light mb-4">Professional tech-services platform.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">HTML</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">CSS</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">JavaScript</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">Bootstrap</span>
+                        </div>
+                        <div class="mt-auto">
+                            <a href="#"
+                                class="w-full flex items-center justify-center gap-2 px-8 py-3 bg-deep-teal/20 text-white hover:bg-deep-teal/40 border border-muted-sage rounded-none font-medium transition-all shadow-neon hover:shadow-neon-strong hover:translate-y-1">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div
+                    class="group relative flex flex-col h-full rounded-2xl overflow-hidden shadow-neon hover:shadow-neon-strong transition-all duration-500 reveal-on-scroll stagger-2 glass-card border border-muted-sage/20">
+                    <div class="h-52 relative overflow-hidden border-b border-muted-sage/10 bg-primary-dark">
+                        <img src="assets/projects/adapt.png" alt="Ad-Adoption Center"
+                            class="w-full h-full object-cover animate-fade-in transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-primary-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                            <a href="#"
+                                class="px-6 py-2 bg-muted-sage/20 border border-muted-sage text-white rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-neon hover:bg-muted-sage/40">View
+                                Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-muted-sage transition-colors">
+                            Ad-Adoption Center</h3>
+                        <p class="text-sm text-cyan-light mb-4">User-friendly portal for pet adoption.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">HTML</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">CSS</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">JavaScript</span>
+                            <span
+                                class="px-3 py-1 text-xs rounded-full bg-muted-sage/10 text-muted-sage border border-muted-sage/30">Bootstrap</span>
+                        </div>
+                        <div class="mt-auto">
+                            <a href="#"
+                                class="w-full flex items-center justify-center gap-2 px-8 py-3 bg-deep-teal/20 text-white hover:bg-deep-teal/40 border border-muted-sage rounded-none font-medium transition-all shadow-neon hover:shadow-neon-strong hover:translate-y-1">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="pt-[150px] pb-[200px] relative bg-primary-dark">
+        <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5 pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white reveal-on-scroll text-glow"
+                style="margin-top: 30px; margin-bottom: 160px;">
+                Get In Touch</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Left Column: Contact Form -->
+                <div class="reveal-on-scroll">
+                    <div class="glass-card p-8 rounded-2xl border border-muted-sage/30 shadow-neon">
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-cyan-light mb-2">Name</label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full px-4 py-3 bg-primary-dark/50 border border-muted-sage/20 rounded-xl focus:outline-none focus:border-muted-sage focus:ring-1 focus:ring-muted-sage text-white transition-all"
+                                    placeholder="Your Name" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-cyan-light mb-2">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full px-4 py-3 bg-primary-dark/50 border border-muted-sage/20 rounded-xl focus:outline-none focus:border-muted-sage focus:ring-1 focus:ring-muted-sage text-white transition-all"
+                                    placeholder="your@email.com" required>
+                            </div>
+                            <div>
+                                <label for="message"
+                                    class="block text-sm font-medium text-cyan-light mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5"
+                                    class="w-full px-4 py-3 bg-primary-dark/50 border border-muted-sage/20 rounded-xl focus:outline-none focus:border-muted-sage focus:ring-1 focus:ring-muted-sage text-white transition-all resize-none"
+                                    placeholder="Your Message..." required></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-4 bg-muted-sage text-primary-dark font-bold rounded-xl shadow-neon hover:shadow-neon-strong transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group">
+                                Send Message <i
+                                    class="fas fa-paper-plane transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column: Social Cards -->
+                <div class="space-y-[15px] reveal-on-scroll stagger-1">
+                    <p class="text-[18px] font-medium text-white/60 mb-[18px]">
+                        Ready to start your next big project?
+                    </p>
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/amanybadr" target="_blank"
+                        class="flex items-center p-3.5 glass-card rounded-2xl shadow-neon hover:shadow-neon-strong transition-all hover:-translate-y-1 group border border-muted-sage/20">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-muted-sage/10 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                            <i class="fab fa-github text-muted-sage text-2xl text-glow"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-cyan-light font-mono font-light opacity-60">GitHub</p>
+                            <p
+                                class="text-[17px] font-semibold text-white group-hover:text-muted-sage transition-colors">
+                                amanybadr</p>
+                        </div>
+                    </a>
+
+                    <!-- LinkedIn Card -->
+                    <a href="https://www.linkedin.com/in/amany-badr-a5614a321/" target="_blank"
+                        class="flex items-center p-3.5 glass-card rounded-2xl shadow-neon hover:shadow-neon-strong transition-all hover:-translate-y-1 group border border-muted-sage/20">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-muted-sage/10 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                            <i class="fab fa-linkedin-in text-muted-sage text-2xl text-glow"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-cyan-light font-mono font-light opacity-60">LinkedIn</p>
+                            <p
+                                class="text-[17px] font-semibold text-white group-hover:text-muted-sage transition-colors">
+                                Amany
+                                Badr</p>
+                        </div>
+                    </a>
+
+                    <!-- Email Card -->
+                    <a href="mailto:amanybadr19930@gmail.com"
+                        class="flex items-center p-3.5 glass-card rounded-2xl shadow-neon hover:shadow-neon-strong transition-all hover:-translate-y-1 group border border-muted-sage/20">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-muted-sage/10 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                            <i class="fas fa-envelope text-muted-sage text-2xl text-glow"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-cyan-light font-mono font-light opacity-60">Email Address</p>
+                            <p
+                                class="text-[15px] md:text-[17px] font-semibold text-white group-hover:text-muted-sage transition-colors break-all">
+                                amanybadr19930@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <!-- Phone Card -->
+                    <a href="tel:+201032800348"
+                        class="flex items-center p-3.5 glass-card rounded-2xl shadow-neon hover:shadow-neon-strong transition-all hover:-translate-y-1 group border border-muted-sage/20">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-muted-sage/10 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                            <i class="fas fa-phone text-muted-sage text-2xl text-glow"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-cyan-light font-mono font-light opacity-60">Phone Number</p>
+                            <p
+                                class="text-[17px] font-semibold text-white group-hover:text-muted-sage transition-colors">
+                                +20
+                                103 280 0348</p>
+                        </div>
+                    </a>
+
+                    <!-- Behance Card -->
+                    <a href="#" target="_blank"
+                        class="flex items-center p-3.5 glass-card rounded-2xl shadow-neon hover:shadow-neon-strong transition-all hover:-translate-y-1 group border border-muted-sage/20">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-muted-sage/10 flex items-center justify-center mr-5 group-hover:scale-110 transition-transform border border-muted-sage/30">
+                            <i class="fab fa-behance text-muted-sage text-2xl text-glow"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-cyan-light font-mono font-light opacity-60">Behance</p>
+                            <p
+                                class="text-[17px] font-semibold text-white group-hover:text-muted-sage transition-colors">
+                                Behance / amanybadr</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-primary-dark border-t border-muted-sage/20 transition-colors">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center opacity-70 hover:opacity-100 transition-opacity group">
+            <div class="text-sm text-muted-sage flex items-center group-hover:text-glow transition-all">
+                Designed & Built with precision by Amany Badr.
+                <a href="#"
+                    class="ml-4 p-2 rounded-full bg-muted-sage/10 hover:bg-muted-sage/20 text-muted-sage hover:text-white transition-all border border-muted-sage/30 shadow-neon hover:shadow-neon-strong transform hover:-translate-y-1">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        // Dark Mode Logic (Disabled as per latest request)
+        /*
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const htmlElement = document.documentElement;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
+
+        function toggleTheme() {
+            htmlElement.classList.toggle('dark');
+            const isDark = htmlElement.classList.contains('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+
+            if (isDark) {
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+            } else {
+                moonIcon.classList.remove('hidden');
+                sunIcon.classList.add('hidden');
+            }
+        }
+        */
+
+        // Initialize theme (Force Dark/Neon Mode)
+        const htmlElement = document.documentElement;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            // Default to dark anyway for this specific design
+            htmlElement.classList.add('dark');
+        }
+
+        /*
+        if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        */
+
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+
+        // Typewriter Effect
+        const typewriterText = ["Frontend Developer", "UI/UX Designer", "Creative Coder"];
+        let typeIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeSpeed = 100;
+        const deleteSpeed = 50;
+        const pauseTime = 2000;
+        const typeTarget = document.getElementById('typewriter-text');
+
+        function type() {
+            const currentText = typewriterText[typeIndex];
+            if (isDeleting) {
+                typeTarget.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeTarget.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(type, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeIndex = (typeIndex + 1) % typewriterText.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+            }
+        }
+
+        if (typeTarget) {
+            type();
+        }
+
+
+        // Scroll Animation (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    entry.target.classList.remove('opacity-0');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            el.classList.add('opacity-0');
+            observer.observe(el);
+        });
+
+        // Timeline Animation
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('h-full');
+                    entry.target.classList.remove('h-0');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        const verticalLines = document.querySelectorAll('.draw-line');
+        verticalLines.forEach(line => timelineObserver.observe(line));
+    </script>
+
+</body>
+
+</html>
